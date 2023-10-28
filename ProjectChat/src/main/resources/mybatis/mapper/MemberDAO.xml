@@ -4,6 +4,12 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.edu.springboot.jdbc.MemberService">
- 	
+<mapper namespace="com.edu.springboot.jdbc.IMemberService">
+ 	<select id="login_act" parameterType="com.edu.springboot.jdbc.MemberDTO" 
+ 	resultType="com.edu.springboot.jdbc.MemberDTO">
+ 		select * from member where email=#{param1} and password=#{param2}
+ 	</select>
+ 	<insert id="signup_act">
+ 		
+ 	</insert>
 </mapper>

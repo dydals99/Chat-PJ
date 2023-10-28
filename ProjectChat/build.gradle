@@ -28,10 +28,7 @@ dependencies {
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	eclipse.wtp.facet {
-    // Change the version of the Dynamic Web Module facet
-    facet name: 'jst.web', version: '5.0'
-	}
+	
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
@@ -45,7 +42,10 @@ dependencies {
 	//JSP 새로고침
     implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+	eclipse.wtp.facet {
+    // Change the version of the Dynamic Web Module facet
+    facet name: 'jst.web', version: '5.0'
+	}
 }
 
 tasks.named('test') {
