@@ -9,7 +9,7 @@
  	resultType="com.edu.springboot.jdbc.MemberDTO">
  		select * from member where email=#{param1} and password=#{param2}
  	</select>
- 	<insert id="signup_act">
- 		
+ 	<insert id="signup_act" parameterType="com.edu.springboot.jdbc.MemberDTO">
+ 		insert into member values (member_seq.nextval, #{email}, #{name}, #{password})
  	</insert>
 </mapper>

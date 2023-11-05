@@ -10,17 +10,13 @@
 <body>
 	<h2>Chat</h2>
 		<c:choose>
-			<c:when test="${not empty sessionScope.siteUserInfo }">
-				<h4>아이디:${sessionScope.siteUserInfo.email }</h4>
-				<h4>이름:${sessionScope.siteUserInfo.name }</h4>
+			<c:when test="${not empty siteUserInfo }">
+				<h4>아이디:${siteUserInfo.email }</h4>
+				<h4>이름:${siteUserInfo.name }</h4>
 				<button onclick="location.href='logout';">로그아웃</button>
-				 <table>
-					<tr>
-						<td>이름</td>  
-						<td>이전대화</td> 
-					</tr>
-				  </table>
-			</c:when>
+				<button onclick="location.href='chat';">채팅방 생성하기</button>
+				<h3>채팅 목록</h3>
+			</c:when> 
 			<c:otherwise>
 				<a href="login">로그인</a>
 				<a href="signup">회원가입</a>

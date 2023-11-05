@@ -31,7 +31,7 @@ public class MainController {
 	}
 	@RequestMapping("login")
 	public String login() {
-		return "login";
+		return "member/login";
 	}
 	@RequestMapping(value = "login_act", method = RequestMethod.POST)
 	public String login_act(HttpServletRequest req, HttpSession session) {
@@ -58,10 +58,22 @@ public class MainController {
 	}
 	@RequestMapping("signup")
 	public String signup() {
-		return "signup"; 
+		return "member/signup"; 
 	}
-	@RequestMapping("signup_act")
-	public String signup_act() {
-		return "login";
+	@RequestMapping(value = "signup_act", method = RequestMethod.POST)
+	public String signup_act(HttpServletRequest req, HttpSession session, MemberDTO dto) {
+		
+		int result = dao.signup_act(dto);
+		
+		if(result==1) System.out.println("입력되었습니다.");
+		
+		return "member/login";
+	}
+	//채팅
+	@RequestMapping("chat")
+	public ModelAndView chat() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("chat/chat");
+		return mv;
 	}
 }  
