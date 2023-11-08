@@ -12,6 +12,7 @@ import com.edu.springboot.jdbc.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 
 @Controller
 public class MainController {
@@ -69,10 +70,16 @@ public class MainController {
 		
 		return "member/login";
 	}
-	//채팅
+	//채팅 
 	@RequestMapping("chat")
-	public ModelAndView chat() {
+	public ModelAndView chat(HttpSession session) { 
+		
+		MemberDTO dto = new MemberDTO();
+		dto = (MemberDTO) session.getAttribute("siteUserInfo");
+//		System.out.println(dto.getName());
+		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("userName", dto.getName());
 		mv.setViewName("chat/chat");
 		return mv;
 	}

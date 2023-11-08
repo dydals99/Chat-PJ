@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+
+	function chat(){
+		var options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=565, height=660, top=0,left=0";
+		window.open("chat","_blank", options)
+	}
+</script>
 <body>
 	<h2>Chat</h2>
 		<c:choose>
@@ -14,7 +21,7 @@
 				<h4>아이디:${siteUserInfo.email }</h4>
 				<h4>이름:${siteUserInfo.name }</h4>
 				<button onclick="location.href='logout';">로그아웃</button>
-				<button onclick="location.href='chat';">채팅방 생성하기</button>
+				<button onclick="chat()">채팅방 생성하기</button>
 				<h3>채팅 목록</h3>
 			</c:when> 
 			<c:otherwise>

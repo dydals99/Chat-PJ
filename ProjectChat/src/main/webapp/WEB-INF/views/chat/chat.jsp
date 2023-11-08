@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,15 +38,15 @@
 		width: 330px;
 		height: 25px;
 	}
-	#yourMsg{
+	/* #yourMsg{
 		display: none;
-	}
+	} */
 </style>
 </head>
 <script type="text/javascript">
 	var ws;
 
-	function wsOpen(){
+	onload = function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chating");
 		wsEvt();
 	}
@@ -68,19 +69,6 @@
 			}
 		});
 	}
-
-	function chatName(){
-		var userName = $("#userName").val();
-		if(userName == null || userName.trim() == ""){
-			alert("사용자 이름을 입력해주세요.");
-			$("#userName").focus();
-		}else{
-			wsOpen();
-			$("#yourName").hide();
-			$("#yourMsg").show();
-		}
-	}
-
 	function send() {
 		var uN = $("#userName").val();
 		var msg = $("#chatting").val();
@@ -97,12 +85,10 @@
 		<div id="yourName">
 			<table class="inputTable">
 				<tr>
-					<th>사용자명</th>
-					<th><input type="text" name="userName" id="userName"></th>
-					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+					<th><input type="text" name="userName" id="userName" hidden="${userName}" value="${userName}"/></th>
 				</tr>
 			</table>
-		</div>
+		</div> 
 		<div id="yourMsg">
 			<table class="inputTable">
 				<tr>
