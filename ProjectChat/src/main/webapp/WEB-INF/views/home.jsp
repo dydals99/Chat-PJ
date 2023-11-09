@@ -23,6 +23,7 @@
 				<button onclick="location.href='logout';">로그아웃</button>
 				<button onclick="chat()">채팅방 생성하기</button>
 				<h3>채팅 목록</h3>
+				<%@ include file="chat/chatList.jsp" %>
 			</c:when> 
 			<c:otherwise>
 				<a href="login">로그인</a>

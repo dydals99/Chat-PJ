@@ -38,9 +38,6 @@
 		width: 330px;
 		height: 25px;
 	}
-	/* #yourMsg{
-		display: none;
-	} */
 </style>
 </head>
 <script type="text/javascript">
@@ -50,7 +47,6 @@
 		ws = new WebSocket("ws://" + location.host + "/chating");
 		wsEvt();
 	}
-		
 	function wsEvt() {
 		ws.onopen = function(data){
 			//소켓이 열리면 초기화 세팅하기
@@ -62,7 +58,6 @@
 				$("#chating").append("<p>" + msg + "</p>");
 			}
 		}
-
 		document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
 				send();
@@ -74,6 +69,20 @@
 		var msg = $("#chatting").val();
 		ws.send(uN+" : "+msg);
 		$('#chatting').val("");
+		
+		var data = { name: uN, chatting: msg};
+		var json = JSON.stringify(data);
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open("POST", "chatting", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+		    if (xhr.readyState === 4 && xhr.status === 200) {
+		        var response = JSON.parse(xhr.responseText);
+		        console.log(response);
+		    }
+		};
+		xhr.send(json);
 	}
 </script>
 <body>

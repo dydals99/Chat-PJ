@@ -1,12 +1,17 @@
 package com.edu.springboot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.edu.springboot.jdbc.ChatDTO;
 import com.edu.springboot.jdbc.IMemberService;
 import com.edu.springboot.jdbc.MemberDTO;
 
@@ -39,7 +44,6 @@ public class MainController {
 		
 		//파라미터로 받은 정보를 dto에 저장 
 		MemberDTO dto = dao.login_act(req.getParameter("email"), req.getParameter("password"));
-		ModelAndView mv = new ModelAndView();
 		//dto에 아무런 정보가 없다면 아래와 같이
 		if (dto == null) {
 			System.out.println("회원정보 없음");
@@ -76,11 +80,23 @@ public class MainController {
 		
 		MemberDTO dto = new MemberDTO();
 		dto = (MemberDTO) session.getAttribute("siteUserInfo");
-//		System.out.println(dto.getName());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("userName", dto.getName());
 		mv.setViewName("chat/chat");
+		return mv;
+	}
+	@RequestMapping(value = "chatting", method = RequestMethod.POST)
+	 public ModelAndView chatting(@RequestBody Map<String, Object> map) {
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO mdto = new MemberDTO();
+		ChatDTO cdto = new ChatDTO();
+		
+		
+		mv.addObject("userName", mdto.getName());
+		mv.addObject("chatting", cdto.getChating());
+		mv.setViewName("chat/chatlist");
 		return mv;
 	}
 }  

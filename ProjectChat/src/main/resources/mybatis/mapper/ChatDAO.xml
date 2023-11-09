@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.jdbc.IChatService">
+	<select id="chat_list" parameterType="com.edu.springboot.jdbc.ChatDTO"
+	resultType="com.edu.springboot.jdbc.ChatDTO">
+		select * from chat where member_idx=#{param1}
+	</select>
+</mapper>
