@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${not empty siteUserInfo}">
+<c:forEach items="${userList}" var="userList">
 	<table>
 		<tr>
-			<td>이름:${userName}</td>
-			<td>내용:${chatting }<button onclick="">참여하기</button></td>
+			<td>${userList.name}</td>
 		</tr>
 	</table>
-</c:if>
+</c:forEach>
 </body>
 </html> 

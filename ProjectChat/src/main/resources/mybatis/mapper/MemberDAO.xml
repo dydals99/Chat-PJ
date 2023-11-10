@@ -12,4 +12,9 @@
  	<insert id="signup_act" parameterType="com.edu.springboot.jdbc.MemberDTO">
  		insert into member values (member_seq.nextval, #{email}, #{name}, #{password})
  	</insert>
+ 	<!-- 회원리스트 -->
+ 	<select id="select_user" parameterType="com.edu.springboot.jdbc.MemberDTO" 
+ 	resultType="com.edu.springboot.jdbc.MemberDTO">
+ 		select name from member
+ 	</select>
 </mapper>

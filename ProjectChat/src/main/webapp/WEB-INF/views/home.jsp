@@ -21,9 +21,15 @@
 				<h4>아이디:${siteUserInfo.email }</h4>
 				<h4>이름:${siteUserInfo.name }</h4>
 				<button onclick="location.href='logout';">로그아웃</button>
-				<button onclick="chat()">채팅방 생성하기</button>
-				<h3>채팅 목록</h3>
-				<%@ include file="chat/chatList.jsp" %>
+				
+				<h3>유저목록</h3>
+				<c:forEach items="${userList}" var="userList">
+				<table>
+					<tr>
+						<td>${userList.name}<button onclick="chat()">채팅방 생성하기</button></td>
+					</tr>
+				</table>
+				</c:forEach>
 			</c:when> 
 			<c:otherwise>
 				<a href="login">로그인</a>

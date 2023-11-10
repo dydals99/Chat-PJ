@@ -1,6 +1,6 @@
 package com.edu.springboot;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import com.edu.springboot.jdbc.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
 
 @Controller
 public class MainController {
@@ -30,7 +29,7 @@ public class MainController {
 		
 		if(session.getAttribute("email")!=null) {
 
-		
+			
 		}
 		return "home";
 		
@@ -40,7 +39,7 @@ public class MainController {
 		return "member/login";
 	}
 	@RequestMapping(value = "login_act", method = RequestMethod.POST)
-	public String login_act(HttpServletRequest req, HttpSession session) {
+	public String login_act(HttpServletRequest req, HttpSession session, Model model) {
 		
 		//파라미터로 받은 정보를 dto에 저장 
 		MemberDTO dto = dao.login_act(req.getParameter("email"), req.getParameter("password"));
@@ -51,6 +50,8 @@ public class MainController {
 		//정보가 있다면 세션영역에 저장 후 home으로 이동
 		else {
 			session.setAttribute("siteUserInfo", dto);
+			//로그인시 유저목록을 가지고옴
+			model.addAttribute("userList",dao.select_user());
 		}
 		return "home";
 	}
@@ -96,7 +97,6 @@ public class MainController {
 		
 		mv.addObject("userName", mdto.getName());
 		mv.addObject("chatting", cdto.getChating());
-		mv.setViewName("chat/chatlist");
 		return mv;
 	}
-}  
+}
