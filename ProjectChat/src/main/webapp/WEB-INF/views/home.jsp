@@ -10,9 +10,9 @@
 <script type="text/javascript">
 
 	function chat(){
-		var options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=565, height=660, top=0,left=0";
+		var options = "toolbar=no,scrollbars=yes,resizable=yes,status=no,menubar=no,width=400, height=550, top=0,left=0";
 		window.open("chat","_blank", options)
-	}
+	} 
 </script>
 <body>
 	<h2>Chat</h2>
@@ -21,15 +21,16 @@
 				<h4>아이디:${siteUserInfo.email }</h4>
 				<h4>이름:${siteUserInfo.name }</h4>
 				<button onclick="location.href='logout';">로그아웃</button>
-				
-				<h3>유저목록</h3>
+				<button onclick="chat()">채팅하기</button>
+				<%-- <h3>유저목록</h3>
 				<c:forEach items="${userList}" var="userList">
 				<table>
 					<tr>
-						<td>${userList.name}<button onclick="chat()">채팅방 생성하기</button></td>
+						<td>${userList.name}</td>
 					</tr>
 				</table>
-				</c:forEach>
+				</c:forEach> --%>
+				<h3>이전 채팅</h3>
 			</c:when> 
 			<c:otherwise>
 				<a href="login">로그인</a>
